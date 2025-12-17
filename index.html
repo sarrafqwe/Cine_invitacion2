@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Invitación para mi Reina 👑💖</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.95);
+            padding: 40px;
+            border-radius: 25px;
+            max-width: 520px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            z-index: 2;
+        }
+
+        h1 {
+            color: #c44569;
+        }
+
+        p {
+            font-size: 1.15em;
+            color: #4a2c2a;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        button {
+            padding: 14px 32px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .accept {
+            background: #ff6f91;
+            color: white;
+        }
+
+        .reject {
+            background: #eee;
+            color: #666;
+        }
+
+        footer {
+            margin-top: 25px;
+            font-size: 0.95em;
+            color: #7a4a4a;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 35px;
+            border-radius: 25px;
+            text-align: center;
+            font-size: 1.6em;
+        }
+
+        /* Mimos */
+        .mimo {
+            position: fixed;
+            font-size: 26px;
+            animation: subir 4s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes subir {
+            to {
+                transform: translateY(-100vh) scale(1.4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Para mi reina hermosa 👑💖</h1>
+
+        <p>
+            Mi amor de mi vida, osaa preciosa…  
+            quería preguntarte algo muy especial 🥺💞
+        </p>
+
+        <p>
+            ¿Te gustaría ir conmigo al cine,  
+            llenarnos de abrazos, mimos y besitos? 🎬🍿
+        </p>
+
+        <div class="buttons">
+            <button class="accept" onclick="aceptar()">Acepto 💖</button>
+            <button class="reject" onclick="rechazar()">Rechazar 😅</button>
+        </div>
+
+        <footer>
+            Hecho con todo mi amor, solo para vos mi reina ✨
+        </footer>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content" id="modalText"></div>
+    </div>
+
+    <script>
+        let rechazos = 0;
+        const mimos = ["🥺", "🥰", "😍", "😘", "💖", "💕", "🤗", "😚", "♥️"];
+
+        function aceptar() {
+            for (let i = 0; i < 45; i++) {
+                crearMimo();
+            }
+            mostrarModal("Sabía que mi reina iba a decir que sí 😍👑");
+        }
+
+        function crearMimo() {
+            const mimo = document.createElement("div");
+            mimo.classList.add("mimo");
+            mimo.innerHTML = mimos[Math.floor(Math.random() * mimos.length)];
+            mimo.style.left = Math.random() * 100 + "vw";
+            mimo.style.bottom = "-20px";
+            mimo.style.fontSize = (Math.random() * 20 + 24) + "px";
+            document.body.appendChild(mimo);
+            setTimeout(() => mimo.remove(), 4000);
+        }
+
+        function rechazar() {
+            rechazos++;
+            if (rechazos === 1) {
+                mostrarModal("¿Segura osaa? 🥺💔");
+            } else {
+                mostrarModal("😢💔");
+            }
+        }
+
+        function mostrarModal(texto) {
+            const modal = document.getElementById("modal");
+            const modalText = document.getElementById("modalText");
+            modalText.textContent = texto;
+            modal.style.display = "flex";
+            setTimeout(() => modal.style.display = "none", 1800);
+        }
+    </script>
+
+</body>
+</html>
